@@ -103,21 +103,22 @@ def scrape_user_activity(username):
         page = context.new_page()
         page.goto(f'https://www.reddit.com/user/{username}')
 
-        #scroll to load more activity
-        for _ in range(5):
+        last_height = page.evaluate('document.body.scrollHeight')
+        while True:
             page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-            time.sleep(2)
-        
-        posts = page.query_selector_all('div.Post')
+            time.sleep(3)
+            new_height = page.evaluate('document.body.scrollHeight')
+            if new_height == last_height:
+                break
+            last_height = new_height
 
-        for post in posts:
-            subreddit_element = post.query_selector('a[href^="/r/"]')
-            if subreddit_element:
-                subreddit_url = subreddit_element.get_attribute('href')
+        subreddit_elements = page.query_selector_all('a[href^="/r/"]')
+        print(f'Found {len(subreddit_elements)} subreddit elements for user {username}')
 
-                #get the subreddit name
-                subreddit_name = subreddit_url.split('/')[-2]
-
+        for subreddit_element in subreddit_elements:
+            subreddit_url = subreddit_element.get_attribute('href')
+            if subreddit_url:
+                subreddit_name = subreddit_url.split('/')[2]
                 user_subreddits.add(subreddit_name)
         
         browser.close()
