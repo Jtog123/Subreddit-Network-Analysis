@@ -12,10 +12,8 @@ import seaborn as sns
 import pandas as pd
 import networkx as nx
 
-forcommit=0
 
-
-exlusion_list = ['wsbapp','HalseyApp','VisualMod']
+exclusion_list = ['wsbapp','HalseyApp','VisualMod, usaa_auto']
 
 def scroll_to_bottom(page):
     page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
@@ -47,7 +45,7 @@ def scrape_post_comments(page, post_url, max_users=5):
         for user_element in comments:
             user_url = user_element.get_attribute('href')
             username = user_url.split('/')[-2]  # Extract username from URL
-            if(username in exlusion_list):
+            if(username in exclusion_list):
                 pass
             else:
                 users.add(username)
