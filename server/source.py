@@ -12,6 +12,8 @@ import seaborn as sns
 import pandas as pd
 import networkx as nx
 
+forcommit=0
+
 
 exlusion_list = ['wsbapp','HalseyApp','VisualMod']
 
