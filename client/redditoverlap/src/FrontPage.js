@@ -1,25 +1,69 @@
+import React from 'react'
+
+function FloatingElement({ className }) {
+    const animationDuration = 30 + Math.random() * 20;
+    const animationDelay = Math.random() * -30;
+  
+    return (
+      <div 
+        className={`absolute rounded-full ${className}`} 
+        style={{
+          animation: `float ${animationDuration}s infinite linear`,
+          animationDelay: `${animationDelay}s`
+        }}
+      />
+    );
+}
+
+
 function FrontPage() {
     return (
-        <div className=" flex justify-center">
-          <div className="content-container bg-blue-300 min-h-screen w-3/4">
-            <div className="header-container bg-yellow-300 h-1/6 flex justify-center items-center">
-              <header className='text-6xl bg-red-200 w-full text-center '>Reddit Overlap Analysis</header>
+        <div className="relative flex justify-center">
+
+            <FloatingElement className="w-20 h-20 bg-pink-500 opacity-20 top-1/4 left-1/4 blur-sm" />
+            <FloatingElement className="w-32 h-32 bg-orange-500 opacity-20 top-3/4 right-1/3 blur-sm" />
+            <FloatingElement className="w-24 h-24 bg-purple-500 opacity-20 bottom-1/4 left-1/3 blur-sm" />
+            <FloatingElement className="w-16 h-16 bg-blue-500 opacity-20 top-1/2 right-1/4 blur-sm" />
+
+            <div className="content-container bg-black min-h-screen w-3/4">
+                <div className="header-container  h-1/6 flex justify-center items-center">
+                <header className='text-6xl bg-black w-full text-center text-white  '>Reddit Overlap Analysis</header>
             </div>
 
-            <div className="input-container  bg-orange-400 h-1/6 w-full flex justify-center items-center ">
-                <div className="ghost-and-input relative w-4/6 bg-yellow-600 ">
-                    <span className='absolute inset-y-0 left-0 flex items-center pl-3 text-2xl text-gray-500'>r/</span>
-                    <input className='rounded-2xl w-full h-12 text-2xl pl-10 pr-14'
-                        type="text"
-                        placeholder=''
-                    />
-                    <span className='absolute inset-y-0 right-0 flex items-center pr-2'>
-                        <button className='rounded-full h-10 w-10 bg-green-400 '> Go</button>
-                    </span>
-                    
-
-                </div>
+            <div className="input-container h-1/8 w-full flex justify-center items-center ">
                 
+                    <div className="ghost-and-input relative w-4/6  ">
+                        <div className="absolute inset-0 w-full bg-gradient-to-r from-pink-500 to bg-orange-500 rounded-lg blur-lg z-0"></div>
+
+                        <div className="relative z-10">
+                            <span className='absolute inset-y-0 left-0 flex items-center pl-4 text-2xl text-white z-10'>r/</span>
+                            <input className='rounded-2xl w-full h-12 text-2xl pl-10 pr-14 text-white z-10 bg-black'
+                                type="text"
+                                placeholder=''
+                            />
+                        </div>
+                        <span className='absolute inset-y-0 right-0 flex items-center pr-3'>
+                            <button className='rounded-full h-10 w-10 bg-green-400 z-10   '> Go</button>
+                        </span>
+                    </div>    
+
+            </div>
+
+            <div className="sample-size-container h-1/12 w-full flex justify-center items-center space-x-4">
+            <span className="text-white">Sample size</span>
+                <label htmlFor="" className="inline-flex items-center ">
+                    <input type='radio' name='options' value='option1' className="form-radio h-4 w-4 text-blue-600"/>
+                    <span className="ml-2 text-white">10</span>
+                </label>
+                <label htmlFor="" className="inline-flex items-center ">
+                    <input type='radio' name='options' value='option2' className="form-radio h-4 w-4 text-blue-600"/>
+                    <span className="ml-2 text-white">100</span>
+                </label>
+                <label htmlFor="" className="inline-flex items-center ">
+                    <input type='radio' name='options' value='option3' className="form-radio h-4 w-4 text-blue-600"/>
+                    <span className="ml-2 text-white">1000</span>
+                </label>
+
             </div>
           </div>
         </div>
