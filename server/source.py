@@ -53,6 +53,8 @@ def scrape_post_comments(page, post_url, max_users=5):
             if len(users) >= max_users:
                 print(f'Reached maximum number of users: {max_users}')
                 return users
+        
+    page.close()
 
     return users        
 
@@ -92,6 +94,7 @@ def scrape_subreddit(subreddit, num_posts=1):
             post_users = scrape_post_comments(page, post_url)
             users.update(post_users)
         
+        page.close()
         browser.close()
     
     return list(users)
@@ -123,6 +126,7 @@ def scrape_user_activity(username):
                 subreddit_name = subreddit_url.split('/')[2]
                 user_subreddits.add(subreddit_name)
         
+        page.close()
         browser.close()
     
     return list(user_subreddits)
