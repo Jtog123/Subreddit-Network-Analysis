@@ -22,10 +22,13 @@ function FloatingElement({ className }) {
 function FrontPage() {
 
     const [inputText, setInputText] = useState('')
+    const [sampleSize, setSampleSize] = useState('10')
+
     function handleSubmit(e) {
         e.preventDefault();
         setInputText('')
-        console.log('oh yea');
+        console.log(sampleSize);
+
     }
 
     return (
@@ -52,6 +55,7 @@ function FrontPage() {
                                 <input className='rounded-2xl w-full h-12 text-2xl pl-10 pr-14 text-white z-10 bg-black '
                                     type="text"
                                     placeholder=''
+                                    required
                                     value={inputText}
                                     onChange={(e) => setInputText(e.target.value)}
                                     
@@ -74,15 +78,36 @@ function FrontPage() {
             <div className="sample-size-container h-1/12 w-full flex justify-center items-center space-x-4">
             <span className="text-white">Sample size</span>
                 <label htmlFor="" className="inline-flex items-center ">
-                    <input type='radio' name='options' value='option1' className="form-radio h-4 w-4 text-blue-600"/>
+                    <input 
+                        type='radio' 
+                        name='options' 
+                        value='10' 
+                        className="form-radio h-4 w-4 text-blue-600"
+                        checked = {sampleSize === '10'}
+                        onChange={(e) => setSampleSize(e.target.value)}
+                    />
                     <span className="ml-2 text-white">10</span>
                 </label>
                 <label htmlFor="" className="inline-flex items-center ">
-                    <input type='radio' name='options' value='option2' className="form-radio h-4 w-4 text-blue-600"/>
+                    <input 
+                        type='radio' 
+                        name='options' 
+                        value='100' 
+                        className="form-radio h-4 w-4 text-blue-600"
+                        checked={sampleSize === '100'}
+                        onChange={(e) => setSampleSize(e.target.value)}
+                    />
                     <span className="ml-2 text-white">100</span>
                 </label>
                 <label htmlFor="" className="inline-flex items-center ">
-                    <input type='radio' name='options' value='option3' className="form-radio h-4 w-4 text-blue-600"/>
+                    <input 
+                        type='radio' 
+                        name='options' 
+                        value='1000' 
+                        className="form-radio h-4 w-4 text-blue-600"
+                        checked={sampleSize === '1000'}
+                        onChange={(e) => setSampleSize(e.target.value)}
+                    />
                     <span className="ml-2 text-white">1000</span>
                 </label>
 
