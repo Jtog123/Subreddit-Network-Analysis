@@ -19,7 +19,7 @@ function FloatingElement({ className }) {
 }
 
 
-function FrontPage() {
+function FrontPage( {setLoading} ) {
 
     const [inputText, setInputText] = useState('')
     const [sampleSize, setSampleSize] = useState('10')
@@ -28,6 +28,7 @@ function FrontPage() {
         e.preventDefault();
         setInputText('')
         console.log(sampleSize);
+        setLoading(true)
 
     }
 
