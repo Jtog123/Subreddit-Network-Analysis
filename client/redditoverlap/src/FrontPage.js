@@ -1,15 +1,18 @@
 import React from 'react'
+import { useRef, useState, useEffect } from 'react';
 
 function FloatingElement({ className }) {
-    const animationDuration = 30 + Math.random() * 20;
-    const animationDelay = Math.random() * -30;
+    const animationDuration = useRef(30 + Math.random() * 20);
+    const animationDelay = useRef(Math.random() * -30);
   
     return (
       <div 
-        className={`absolute rounded-full ${className}`} 
+        className={`absolute rounded-full floating-element ${className}`} 
         style={{
-          animation: `float ${animationDuration}s infinite linear`,
-          animationDelay: `${animationDelay}s`
+                animationDuration: `${animationDuration.current}s`,
+                animationDelay: `${animationDelay.current}s`
+          //animationDuration: `float ${animationDuration}s infinite linear`,
+          //animationDelay: `${animationDelay}s`
         }}
       />
     );
@@ -17,6 +20,14 @@ function FloatingElement({ className }) {
 
 
 function FrontPage() {
+
+    const [inputText, setInputText] = useState('')
+    function handleSubmit(e) {
+        e.preventDefault();
+        setInputText('')
+        console.log('oh yea');
+    }
+
     return (
         <div className="relative flex justify-center">
 
@@ -35,16 +46,27 @@ function FrontPage() {
                     <div className="ghost-and-input relative w-4/6  ">
                         <div className="absolute inset-0 w-full bg-gradient-to-r from-pink-500 to bg-orange-500 rounded-lg blur-lg z-0"></div>
 
-                        <div className="relative z-10">
-                            <span className='absolute inset-y-0 left-0 flex items-center pl-4 text-2xl text-white z-10'>r/</span>
-                            <input className='rounded-2xl w-full h-12 text-2xl pl-10 pr-14 text-white z-10 bg-black'
-                                type="text"
-                                placeholder=''
-                            />
-                        </div>
-                        <span className='absolute inset-y-0 right-0 flex items-center pr-3'>
-                            <button className='rounded-full h-10 w-10 bg-green-400 z-10   '> Go</button>
-                        </span>
+                        <form action="" onSubmit={handleSubmit}>
+                            <div className="relative z-10">
+                                <span className='absolute inset-y-0 left-0 flex items-center pl-4 text-2xl text-white z-10'>r/</span>
+                                <input className='rounded-2xl w-full h-12 text-2xl pl-10 pr-14 text-white z-10 bg-black '
+                                    type="text"
+                                    placeholder=''
+                                    value={inputText}
+                                    onChange={(e) => setInputText(e.target.value)}
+                                    
+                                />
+                            </div>
+                            <span className='absolute inset-y-0 right-0 flex items-center pr-3'>
+                                <button 
+                                    className='rounded-full h-10 w-10 bg-green-400 z-10'
+                                    type='submit'
+                                > Go
+                                </button>
+                            </span>
+
+                        </form>
+
                     </div>    
 
             </div>

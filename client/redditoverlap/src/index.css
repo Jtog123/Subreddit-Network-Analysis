@@ -25,8 +25,9 @@ code {
   75% { transform: translate(50px, -50px); }
 }
 
-.floating-container {
+.floating-element {
   mask-image: radial-gradient(circle at center, black 30%, transparent 70%);
   -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 70%);
+  animation: float 20s infinite ease-in-out;
 }
 
