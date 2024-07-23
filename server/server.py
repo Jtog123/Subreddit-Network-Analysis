@@ -29,6 +29,9 @@ def testing():
 
     result = source.main(input_text, int(sample_size))
 
+    print(result)
+    print(jsonify(result))
+    
     return jsonify(result)
 
     #return jsonify({"response": f"Recieved: {input_text}"})

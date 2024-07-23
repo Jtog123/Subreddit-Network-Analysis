@@ -4,6 +4,8 @@ import './index.css';
 import FrontPage from './FrontPage';
 import { useRef, useState, useEffect } from 'react';
 import LoadingPage from './LoadingPage';
+import GraphPage from './GraphPage';
+
 const axios = require('axios')
 
 function App() {
@@ -22,13 +24,15 @@ function App() {
                     /> }
 
       {loading && <LoadingPage/>}
-      {graphs && (
-        <div>
-          <img src = {`http://localhost:5000/${graphs.bar_graph}`} alt="Bar Graph"/>
-          <img src = {`http://localhost:5000/${graphs.heatmap}`} alt="heatmap"/>
-          <img src = {`http://localhost:5000/${graphs.network_graph}`} alt="network graph"/>
-        </div>
-      )}
+      {graphs && <GraphPage
+                    graphs={graphs}
+                  />
+        //<div>
+          //<img src = {`http://localhost:5000/${graphs.bar_graph}`} alt="Bar Graph"/>
+          //<img src = {`http://localhost:5000/${graphs.heatmap}`} alt="heatmap"/>
+          //<img src = {`http://localhost:5000/${graphs.network_graph}`} alt="network graph"/>
+        //</div>
+      }
 
     </div>
   );
