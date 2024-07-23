@@ -10,21 +10,12 @@ function App() {
 
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    async function getResponse () {
-        try {
-            let result =  await axios.get('http://localhost:5000/test')
-            console.log(result)
-        } catch (err) {
-            console.error(err)
-        }
-    }
-    getResponse()
-  }, [loading])
+
 
   return (
     <div className="App ">
       {!loading && <FrontPage
+                      loading={loading}
                       setLoading={setLoading}
                     /> }
 

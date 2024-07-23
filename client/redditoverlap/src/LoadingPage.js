@@ -1,7 +1,7 @@
 function LoadingPage(){
     return(
         <div>
-            hello
+            This is the Loading Page
         </div>
     )
 }

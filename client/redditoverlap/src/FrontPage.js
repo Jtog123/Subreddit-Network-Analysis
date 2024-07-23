@@ -1,6 +1,7 @@
-import React from 'react'
+import {React} from 'react'
 import { useRef, useState, useEffect } from 'react';
-const axios = require('axios')
+//const axios = require('axios')
+import axios from 'axios'
 
 function FloatingElement({ className }) {
     const animationDuration = useRef(30 + Math.random() * 20);
@@ -24,16 +25,42 @@ function FloatingElement({ className }) {
 
 
 
-function FrontPage( {setLoading} ) {
+function FrontPage( {loading, setLoading} ) {
 
     const [inputText, setInputText] = useState('')
     const [sampleSize, setSampleSize] = useState('10')
+    /*
+    useEffect(() => {
+        if (loading) {
+            async function sendInput() {
+                try {
+                    let result =  await axios.post('http://localhost:5000/test', {inputText})
+                    console.log(result)
+                } catch (err) {
+                    console.error(err)
+                }
+            }
+            sendInput()
+        }
+    }, [loading , inputText])
+    */
+
+    async function sendInput() {
+        try {
+            let result = await axios.post('http://localhost:5000/text-input', {inputText, sampleSize})
+            console.log(result)
+        } catch (err) {
+            console.error("Here is your error good sir ", err)
+        }
+        
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
         setInputText('')
         console.log(sampleSize);
         setLoading(true)
+        sendInput()
 
     }
 
