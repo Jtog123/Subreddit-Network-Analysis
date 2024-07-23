@@ -181,7 +181,7 @@ def plot_network_graph(user_subreddit_interactions):
     plt.title('Network Graph of Subreddit Interactions')
     plt.show()
 
-
+#main would take in subreddit, sample_size passed from server
 def main():
     subreddit_to_scrape = 'wallstreetbets'
     num_posts_to_scrape = 1
