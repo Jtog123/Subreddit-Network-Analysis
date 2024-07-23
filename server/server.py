@@ -10,6 +10,16 @@ app = Flask(__name__)
 def hello_world():
     return "<p> Hello James </p>"
 
+
+@app.route('/test')
+def testing():
+    return "<p>  my test </p>"
+
+@app.route('/test2')
+def testing2():
+    return "<p> blahahaha </p>"
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
 

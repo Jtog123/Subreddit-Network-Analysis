@@ -1,5 +1,6 @@
 import React from 'react'
 import { useRef, useState, useEffect } from 'react';
+const axios = require('axios')
 
 function FloatingElement({ className }) {
     const animationDuration = useRef(30 + Math.random() * 20);
@@ -17,6 +18,10 @@ function FloatingElement({ className }) {
       />
     );
 }
+
+
+
+
 
 
 function FrontPage( {setLoading} ) {
