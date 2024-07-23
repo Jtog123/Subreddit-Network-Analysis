@@ -1,9 +1,12 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import source
+import os
 
 app = Flask(__name__)
 CORS(app)
+
+app.config['UPLOAD_FOLDER'] = 'static'
 
 #Home route that returns below test
 #when root url in accessed
@@ -31,11 +34,13 @@ def testing():
     #return jsonify({"response": f"Recieved: {input_text}"})
     
 
-@app.route('/test2')
-def testing2():
-    return "<p> blahahaha </p>"
+@app.route('/static/<path:filename>')
+def send_image(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
 if __name__ == '__main__':
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
     app.run(debug=True, port=5000)
 

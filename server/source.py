@@ -7,13 +7,21 @@ scrape the top 3 posts for
 
 from playwright.sync_api import sync_playwright, Playwright
 import time
+import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import networkx as nx
+import os
+
+matplotlib.use('Agg')
 
 
-exclusion_list = ['wsbapp','HalseyApp','VisualMod, usaa_auto']
+exclusion_list = ['wsbapp','HalseyApp','VisualMod', 'usaa_auto', 'usaa_renters', 'usaa_homeowners']
+
+def ensure_directory_exists(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
 def scroll_to_bottom(page):
     page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
@@ -131,7 +139,7 @@ def scrape_user_activity(username):
     
     return list(user_subreddits)
 
-def plot_bar_graph(crossover_analysis):
+def plot_bar_graph(crossover_analysis, file_path):
     subreddits = list(crossover_analysis.keys())
     frequencies = list(crossover_analysis.values())
 
@@ -141,9 +149,10 @@ def plot_bar_graph(crossover_analysis):
     plt.ylabel('Frequency of interaction')
     plt.title('Frequency of User Interactions Across Subreddits')
     plt.xticks(rotation=90)
-    plt.show()
+    plt.savefig(file_path)
+    plt.close()
 
-def plot_heatmap(user_subreddit_interactions):
+def plot_heatmap(user_subreddit_interactions, file_path):
     subreddits = set([sub for subs in user_subreddit_interactions.values() for sub in subs])
 
     subreddit_list = list(subreddits)
@@ -158,10 +167,11 @@ def plot_heatmap(user_subreddit_interactions):
     plt.figure(figsize=(12, 8))
     sns.heatmap(matrix, cmap='YlGnBu')
     plt.title('Heatmap of Subreddit Interactions')
-    plt.show()
+    plt.savefig(file_path)
+    plt.close()
 
 
-def plot_network_graph(user_subreddit_interactions):
+def plot_network_graph(user_subreddit_interactions, file_path):
     G = nx.Graph()
 
     # Add nodes and edges
@@ -179,8 +189,8 @@ def plot_network_graph(user_subreddit_interactions):
     nx.draw_networkx_edges(G, pos, width=1.0, alpha=0.5)
     nx.draw_networkx_labels(G, pos, font_size=10)
     plt.title('Network Graph of Subreddit Interactions')
-    plt.show()
-
+    plt.savefig(file_path)
+    plt.close()
 #main would take in subreddit, sample_size passed from server
 def main(subreddit, sample_size):
     subreddit_to_scrape = subreddit
@@ -207,9 +217,20 @@ def main(subreddit, sample_size):
     
     print(crossover_analysis)
 
-    plot_bar_graph(crossover_analysis)
-    plot_heatmap(user_subreddit_interactions)
-    plot_network_graph(user_subreddit_interactions)
+    bar_graph_path = os.path.join('static', 'bar_graph.png')
+    heatmap_path = os.path.join('static', 'heatmap.png')
+    network_graph_path = os.path.join('static', 'network_graph.png')
+
+    plot_bar_graph(crossover_analysis, bar_graph_path)
+    plot_heatmap(user_subreddit_interactions, heatmap_path)
+    plot_network_graph(user_subreddit_interactions, network_graph_path)
+
+
+    return {
+        'bar_graph':bar_graph_path,
+        'heatmap':heatmap_path,
+        'network_graph':network_graph_path
+    }
 
 
 if __name__ == '__main__' :

@@ -25,7 +25,7 @@ function FloatingElement({ className }) {
 
 
 
-function FrontPage( {loading, setLoading} ) {
+function FrontPage( {loading, setLoading, setGraphs} ) {
 
     const [inputText, setInputText] = useState('')
     const [sampleSize, setSampleSize] = useState('10')
@@ -48,9 +48,12 @@ function FrontPage( {loading, setLoading} ) {
     async function sendInput() {
         try {
             let result = await axios.post('http://localhost:5000//text-and-sample-input', {inputText, sampleSize})
+            setGraphs(result.data)
+            setLoading(false)
             console.log(result)
         } catch (err) {
             console.error("Here is your error good sir ", err)
+            setLoading(false)
         }
         
     }
@@ -110,6 +113,17 @@ function FrontPage( {loading, setLoading} ) {
 
             <div className="sample-size-container h-1/12 w-full flex justify-center items-center space-x-4">
             <span className="text-white">Sample size</span>
+                <label htmlFor="" className="inline-flex items-center ">
+                    <input 
+                        type='radio' 
+                        name='options' 
+                        value='1' 
+                        className="form-radio h-4 w-4 text-blue-600"
+                        checked = {sampleSize === '1'}
+                        onChange={(e) => setSampleSize(e.target.value)}
+                    />
+                    <span className="ml-2 text-white">1</span>
+                </label>
                 <label htmlFor="" className="inline-flex items-center ">
                     <input 
                         type='radio' 
