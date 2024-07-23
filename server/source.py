@@ -19,7 +19,7 @@ def scroll_to_bottom(page):
     page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
     page.wait_for_timeout(2000)  # Wait for comments to load
 
-def scrape_post_comments(page, post_url, max_users=5):
+def scrape_post_comments(page, post_url, max_users):
     users = set()
     page.goto(post_url)
     page.wait_for_timeout(3000) #Wait for the page to load
@@ -60,7 +60,7 @@ def scrape_post_comments(page, post_url, max_users=5):
 
 
 
-def scrape_subreddit(subreddit, num_posts=1):
+def scrape_subreddit(subreddit, num_posts, sample_size):
     users = set()
 
     with sync_playwright() as p:
@@ -91,7 +91,7 @@ def scrape_subreddit(subreddit, num_posts=1):
             print('no posts')
 
         for post_url in post_urls:
-            post_users = scrape_post_comments(page, post_url)
+            post_users = scrape_post_comments(page, post_url, sample_size)
             users.update(post_users)
         
         page.close()
@@ -182,11 +182,13 @@ def plot_network_graph(user_subreddit_interactions):
     plt.show()
 
 #main would take in subreddit, sample_size passed from server
-def main():
-    subreddit_to_scrape = 'wallstreetbets'
+def main(subreddit, sample_size):
+    subreddit_to_scrape = subreddit
+    #'wallstreetbets'
     num_posts_to_scrape = 1
+    #1
 
-    users = scrape_subreddit(subreddit_to_scrape, num_posts_to_scrape)
+    users = scrape_subreddit(subreddit_to_scrape, num_posts_to_scrape, sample_size)
     print(users)
 
     user_subreddit_interactions = {}

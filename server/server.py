@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import source
 
 app = Flask(__name__)
 CORS(app)
@@ -14,7 +15,7 @@ def hello_world():
 
 
 #The Server then needs to send this information to source.py
-@app.route('/text-input', methods=['POST'])
+@app.route('/text-and-sample-input', methods=['POST'])
 def testing():
     data = request.get_json()
     print(data, ' data')
@@ -22,7 +23,12 @@ def testing():
     print(input_text)
     sample_size = data.get('sampleSize', '')
     print(sample_size)
-    return jsonify({"response": f"Recieved: {input_text}"})
+
+    result = source.main(input_text, int(sample_size))
+
+    return jsonify(result)
+
+    #return jsonify({"response": f"Recieved: {input_text}"})
     
 
 @app.route('/test2')

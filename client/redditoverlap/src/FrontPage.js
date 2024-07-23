@@ -47,7 +47,7 @@ function FrontPage( {loading, setLoading} ) {
 
     async function sendInput() {
         try {
-            let result = await axios.post('http://localhost:5000/text-input', {inputText, sampleSize})
+            let result = await axios.post('http://localhost:5000//text-and-sample-input', {inputText, sampleSize})
             console.log(result)
         } catch (err) {
             console.error("Here is your error good sir ", err)
