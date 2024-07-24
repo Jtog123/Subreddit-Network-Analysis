@@ -28,7 +28,7 @@ function FloatingElement({ className }) {
 function FrontPage( {loading, setLoading, setGraphs} ) {
 
     const [inputText, setInputText] = useState('')
-    const [sampleSize, setSampleSize] = useState('10')
+    const [sampleSize, setSampleSize] = useState('1')
     /*
     useEffect(() => {
         if (loading) {
