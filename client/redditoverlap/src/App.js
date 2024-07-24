@@ -13,10 +13,7 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [graphs, setGraphs] = useState(null)
 
-
-
-  return (
-    <div className="App ">
+/*
       {!loading && !graphs && <FrontPage
                       loading={loading}
                       setLoading={setLoading}
@@ -33,6 +30,11 @@ function App() {
           //<img src = {`http://localhost:5000/${graphs.network_graph}`} alt="network graph"/>
         //</div>
       }
+*/
+
+  return (
+    <div className="App ">
+      <GraphPage/>
 
     </div>
   );
