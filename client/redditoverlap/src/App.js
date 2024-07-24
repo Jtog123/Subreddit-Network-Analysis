@@ -34,7 +34,22 @@ function App() {
 
   return (
     <div className="App ">
-      <GraphPage/>
+      {!loading && !graphs && <FrontPage
+                      loading={loading}
+                      setLoading={setLoading}
+                      setGraphs={setGraphs}
+                    /> }
+
+      {loading && <LoadingPage/>}
+      {graphs && <GraphPage
+                    graphs={graphs}
+                  />
+        //<div>
+          //<img src = {`http://localhost:5000/${graphs.bar_graph}`} alt="Bar Graph"/>
+          //<img src = {`http://localhost:5000/${graphs.heatmap}`} alt="heatmap"/>
+          //<img src = {`http://localhost:5000/${graphs.network_graph}`} alt="network graph"/>
+        //</div>
+      }
 
     </div>
   );

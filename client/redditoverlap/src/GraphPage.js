@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import LoadingPage from './LoadingPage';
 
 
 function GraphPage( {graphs} ) {
+
+    const[currentIndex, setCurrentIndex] = useState(0);
+    const[isLoaded, setIsLoaded] = useState(false)
     /*
         <div>
             <img src = {`http://localhost:5000/${graphs.bar_graph}`} alt="Bar Graph"/>
@@ -9,16 +13,22 @@ function GraphPage( {graphs} ) {
             <img src = {`http://localhost:5000/${graphs.network_graph}`} alt="network graph"/>
         </div>
     */
-    /*
-    const slideContainer = 
-        [
-        <img src = {`http://localhost:5000/${graphs. bar_graph}`}   alt="Bar Graph"/>,
-         <img src = {`http://localhost:5000/${graphs.heatmap}`} alt="heatmap"/>,
-         <img src = {`http://localhost:5000/${graphs.network_graph}`} alt="network graph"/>
-        ]
-    */
-    const[currentIndex, setCurrentIndex] = useState(0);
 
+        useEffect(() => {
+            if (graphs && graphs.bar_graph && graphs.heatmap && graphs.network_graph) {
+                setIsLoaded(true);
+            }
+        })
+    
+    const slideContainer = isLoaded ? 
+    [
+        <img className='w-full h-full' src = {`http://localhost:5000/${graphs.bar_graph}`} alt="Bar Graph"/>,
+        <img className='w-full h-full' src = {`http://localhost:5000/${graphs.heatmap}`} alt="heatmap"/>,
+        <img className='w-full h-full' src = {`http://localhost:5000/${graphs.network_graph}`} alt="network graph"/>
+    ] : [];
+    
+ 
+    /*
     const divContainer = 
     [
         <div className='bg-purple-400 w-full h-full flex justify-center items-center'> slide 1</div>,
@@ -26,13 +36,14 @@ function GraphPage( {graphs} ) {
         <div className='bg-purple-800 w-full h-full flex justify-center items-center'> slide 3</div>
 
     ]
+        */
 
     function handleNextClick() {
-        if(currentIndex < divContainer.length - 1) {
+        if(currentIndex < slideContainer.length - 1) {
             setCurrentIndex(currentIndex + 1)
         }
         else {
-            setCurrentIndex(divContainer.length - 1)
+            setCurrentIndex(slideContainer.length - 1)
         }
         //setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, divContainer.length - 1));
 
@@ -67,7 +78,7 @@ function GraphPage( {graphs} ) {
 
                     
                     <React.Fragment key = {currentIndex}>
-                        {divContainer[currentIndex]}
+                        {isLoaded ? slideContainer[currentIndex] : <LoadingPage/>}
                     </React.Fragment>
                     
 

@@ -17,7 +17,7 @@ import os
 matplotlib.use('Agg')
 
 
-exclusion_list = ['wsbapp','HalseyApp','VisualMod', 'usaa_auto', 'usaa_renters', 'usaa_homeowners']
+exclusion_list = ['wsbapp','HalseyApp','VisualMod', 'usaa_auto', 'usaa_renters', 'usaa_homeowners' ,'Colgate_US']
 
 def ensure_directory_exists(directory):
     if not os.path.exists(directory):
@@ -195,7 +195,7 @@ def plot_network_graph(user_subreddit_interactions, file_path):
 
 
 
-    
+
 #main would take in subreddit, sample_size passed from server
 def main(subreddit, sample_size):
     subreddit_to_scrape = subreddit
