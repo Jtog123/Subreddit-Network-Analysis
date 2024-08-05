@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import LoadingPage from './LoadingPage';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight, faHouse } from './icons';
 
 
 function GraphPage( {graphs ,setGraphs} ) {
@@ -102,8 +104,8 @@ function GraphPage( {graphs ,setGraphs} ) {
 
             <div className='flex justify-start items-start w-full  bg-green-300'>
                 <div className='return-button-holder  w-20 h-20 ml-10 flex justify-center items-end bg-blue-200'>
-                    <button  onClick={handleHomeClick} className='return-button bg-red-300'>
-                        Home Logo
+                    <button  onClick={handleHomeClick} className='return-button '>
+                    <FontAwesomeIcon icon={faHouse} className='bg-blue-200 h-10'/>
                     </button>
                 </div>
             </div>
@@ -114,9 +116,11 @@ function GraphPage( {graphs ,setGraphs} ) {
 
                 <div className="slide-container w-full h-full bg-red-400 flex flex-col justify-center items-center relative">
 
-                    <div className="left-button-container bg-green-400 h-12 w-12 flex justify-center items-center absolute -left-7">
-                        <button className="bg-blue-400 h-10 w-12 rounded-full"
-                        onClick={handlePrevClick}>left</button>
+                    <div className="left-button-container  h-12 w-12 flex justify-center items-center absolute -left-7">
+                        <button className="bg-blue-400 h-10 w-10 rounded-full"
+                        onClick={handlePrevClick}>
+                            <FontAwesomeIcon icon={faArrowLeft} className='bg-blue-400 h-5'/>
+                        </button>
                     </div>
                     <div className="slide-content flex-grow flex justify-center items-center">
                         <React.Fragment key={currentIndex}>
@@ -124,8 +128,10 @@ function GraphPage( {graphs ,setGraphs} ) {
                         </React.Fragment>
                     </div>
 
-                    <div className="right-button-container bg-green-400 h-12 w-12 flex justify-center items-center absolute -right-7">
-                        <button className="bg-blue-400 h-10 w-12 rounded-full" onClick={handleNextClick}>right</button>
+                    <div className="right-button-container  h-12 w-12 flex justify-center items-center absolute -right-7">
+                        <button className="bg-blue-400 h-10 w-10 rounded-full" onClick={handleNextClick}>
+                            <FontAwesomeIcon icon={faArrowRight} className='bg-blue-400 h-5'/>
+                        </button>
                     </div>
 
 

@@ -2,6 +2,8 @@ import {React} from 'react'
 import { useRef, useState, useEffect } from 'react';
 //const axios = require('axios')
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from './icons';
 
 function FloatingElement({ className }) {
     const animationDuration = useRef(30 + Math.random() * 20);
@@ -101,8 +103,10 @@ function FrontPage( {loading, setLoading, setGraphs} ) {
                                 <button 
                                     className='rounded-full h-10 w-10 bg-green-400 z-10'
                                     type='submit'
-                                > Go
+                                > 
+                                <FontAwesomeIcon icon={faArrowUp} className='bg-green-400 h-5'/>
                                 </button>
+                                
                             </span>
 
                         </form>
