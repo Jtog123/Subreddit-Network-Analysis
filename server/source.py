@@ -103,6 +103,7 @@ def scrape_subreddit(subreddit, num_posts, sample_size):
             users.update(post_users)
         
         page.close()
+        context.close()
         browser.close()
     
     return list(users)
@@ -135,6 +136,7 @@ def scrape_user_activity(username):
                 user_subreddits.add(subreddit_name)
         
         page.close()
+        context.close() #close background processes?
         browser.close()
     
     return list(user_subreddits)
