@@ -91,7 +91,7 @@ return (
           />
           <Route
             path='/loading'
-            element={loading && <LoadingPage size={250} thickness={20} color1='#ff0000' color2='#000fff' speed={1.5} />}
+            element={loading && <LoadingPage size={250} thickness={20}  speed={1.5} />}
           />
           <Route
             path='/graphs'

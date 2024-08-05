@@ -70,7 +70,7 @@ function FrontPage( {loading, setLoading, setGraphs} ) {
     }
 
     return (
-        <div className="relative flex justify-center">
+        <div className="relative flex justify-center bg-black">
 
             <FloatingElement className="w-20 h-20 bg-pink-500 opacity-20 top-1/4 left-1/4 blur-sm" />
             <FloatingElement className="w-32 h-32 bg-orange-500 opacity-20 top-3/4 right-1/3 blur-sm" />
@@ -101,10 +101,10 @@ function FrontPage( {loading, setLoading, setGraphs} ) {
                             </div>
                             <span className='absolute inset-y-0 right-0 flex items-center pr-3'>
                                 <button 
-                                    className='rounded-full h-10 w-10 bg-green-400 z-10'
+                                    className='rounded-full h-10 w-10 bg-blue-500 z-10'
                                     type='submit'
                                 > 
-                                <FontAwesomeIcon icon={faArrowUp} className='bg-green-400 h-5'/>
+                                <FontAwesomeIcon icon={faArrowUp} className=' h-5'/>
                                 </button>
                                 
                             </span>

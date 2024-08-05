@@ -102,10 +102,10 @@ function GraphPage( {graphs ,setGraphs} ) {
     return (
         <div className="graph-page h-screen bg-black flex justify-center items-center flex-col ">
 
-            <div className='flex justify-start items-start w-full  bg-green-300'>
-                <div className='return-button-holder  w-20 h-20 ml-10 flex justify-center items-end bg-blue-200'>
+            <div className='flex justify-start items-start w-full  '>
+                <div className='return-button-holder  w-20 h-20 ml-10 flex justify-center items-end '>
                     <button  onClick={handleHomeClick} className='return-button '>
-                    <FontAwesomeIcon icon={faHouse} className='bg-blue-200 h-10'/>
+                    <FontAwesomeIcon icon={faHouse} className='text-white h-10'/>
                     </button>
                 </div>
             </div>
@@ -114,12 +114,12 @@ function GraphPage( {graphs ,setGraphs} ) {
 
             <div className=" flex-grow graph-container h-21/24 w-3/6 bg-white flex justify-center items-center">
 
-                <div className="slide-container w-full h-full bg-red-400 flex flex-col justify-center items-center relative">
+                <div className="slide-container w-full h-full  flex flex-col justify-center items-center relative">
 
-                    <div className="left-button-container  h-12 w-12 flex justify-center items-center absolute -left-7">
-                        <button className="bg-blue-400 h-10 w-10 rounded-full"
+                    <div className="left-button-container  h-12 w-12 flex justify-center items-center absolute -left-7 ">
+                        <button className=" h-10 w-10 rounded-full bg-blue-500"
                         onClick={handlePrevClick}>
-                            <FontAwesomeIcon icon={faArrowLeft} className='bg-blue-400 h-5'/>
+                            <FontAwesomeIcon icon={faArrowLeft} className=' h-5'/>
                         </button>
                     </div>
                     <div className="slide-content flex-grow flex justify-center items-center">
@@ -129,8 +129,8 @@ function GraphPage( {graphs ,setGraphs} ) {
                     </div>
 
                     <div className="right-button-container  h-12 w-12 flex justify-center items-center absolute -right-7">
-                        <button className="bg-blue-400 h-10 w-10 rounded-full" onClick={handleNextClick}>
-                            <FontAwesomeIcon icon={faArrowRight} className='bg-blue-400 h-5'/>
+                        <button className="bg-blue-500 h-10 w-10 rounded-full" onClick={handleNextClick}>
+                            <FontAwesomeIcon icon={faArrowRight} className=' h-5'/>
                         </button>
                     </div>
 

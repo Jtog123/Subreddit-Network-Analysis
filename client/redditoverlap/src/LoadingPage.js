@@ -1,7 +1,7 @@
 import React from 'react';
 import './LoadingPage.css';
 
-function LoadingPage({ size = 200, thickness = 15, color1 = '#ff6b6b', color2 = '#4ecdc4', speed = 2 }){
+function LoadingPage({ size = 200, thickness = 15, speed = 2 }){
     const ringStyle = {
         width: `${size}px`,
         height: `${size}px`,
@@ -10,11 +10,12 @@ function LoadingPage({ size = 200, thickness = 15, color1 = '#ff6b6b', color2 = 
     };
     
     return (
-        <div className="loading-container h-screen flex justify-center items-center">
+        <div className="loading-container h-screen flex justify-center items-center flex-col bg-black">
             <div className="rings-wrapper ">
-                <div className="ring ring-1" style={{...ringStyle, borderColor: color1}}></div>
-                <div className="ring ring-2" style={{...ringStyle, borderColor: color2}}></div>
+                <div className="ring ring-1 " style={{...ringStyle, borderColor: '#3b82f6'}}></div>
+                <div className="ring ring-2 " style={{...ringStyle, borderColor: '#a855f7'}}></div>
             </div>
+            <h1 className='mt-20 text-white'>Loading... This may take several minutes</h1>
         </div>
     );
 }

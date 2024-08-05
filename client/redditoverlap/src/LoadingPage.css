@@ -3,9 +3,14 @@
     justify-center: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    font-family: 'Ubuntu', sans-serif;
+    
 }
 
+body {
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
 .rings-wrapper {
     position: relative;
     width: 400px; /* Adjust based on ring size */
