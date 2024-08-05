@@ -1,0 +1,41 @@
+.loading-container {
+    display: flex;
+    justify-center: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.rings-wrapper {
+    position: relative;
+    width: 400px; /* Adjust based on ring size */
+    height: 200px; /* Adjust based on ring size */
+}
+
+.ring {
+    position: absolute;
+    border-radius: 50%;
+    border-style: solid;
+    top: 0;
+    animation: spin linear infinite;
+}
+
+.ring-1 {
+    left: 0;
+    animation-name: spin-left;
+}
+
+.ring-2 {
+    right: 0;
+    animation-name: spin-right;
+}
+
+@keyframes spin-left {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+@keyframes spin-right {
+    0% { transform: rotateY(360deg); }
+    100% { transform: rotateY(0deg); }
+}
