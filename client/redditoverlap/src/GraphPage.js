@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import LoadingPage from './LoadingPage';
+import { useNavigate } from 'react-router-dom';
 
 
-function GraphPage( {graphs} ) {
+function GraphPage( {graphs ,setGraphs} ) {
 
     const[currentIndex, setCurrentIndex] = useState(0);
-    const[isLoaded, setIsLoaded] = useState(false)
+    const[isLoaded, setIsLoaded] = useState(false);
+    const navigate = useNavigate();
+
     /*
         <div>
             <img src = {`http://localhost:5000/${graphs.bar_graph}`} alt="Bar Graph"/>
@@ -62,6 +65,11 @@ function GraphPage( {graphs} ) {
 
     ]
         */
+    
+    function handleHomeClick() {
+        setGraphs(null); // Clear graphs state before navigating home
+        navigate("/");
+    }
 
     function handleNextClick() {
         if(currentIndex < slideContainer.length - 1) {
@@ -90,9 +98,19 @@ function GraphPage( {graphs} ) {
     }
 
     return (
-        <div className="graph-page h-screen bg-black flex justify-center items-center">
+        <div className="graph-page h-screen bg-black flex justify-center items-center flex-col ">
 
-            <div className="graph-container h-21/24 w-3/6 bg-white flex justify-center items-center">
+            <div className='flex justify-start items-start w-full  bg-green-300'>
+                <div className='return-button-holder  w-20 h-20 ml-10 flex justify-center items-end bg-blue-200'>
+                    <button  onClick={handleHomeClick} className='return-button bg-red-300'>
+                        Home Logo
+                    </button>
+                </div>
+            </div>
+
+            
+
+            <div className=" flex-grow graph-container h-21/24 w-3/6 bg-white flex justify-center items-center">
 
                 <div className="slide-container w-full h-full bg-red-400 flex flex-col justify-center items-center relative">
 

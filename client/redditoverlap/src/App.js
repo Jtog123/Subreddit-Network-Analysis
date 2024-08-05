@@ -95,7 +95,7 @@ return (
           />
           <Route
             path='/graphs'
-            element={graphs && <GraphPage graphs={graphs} />}
+            element={graphs && <GraphPage graphs={graphs} setGraphs={setGraphs} />}
           />
         </Routes>
       </div>
