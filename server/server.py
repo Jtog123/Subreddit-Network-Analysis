@@ -3,13 +3,23 @@ from flask_cors import CORS
 import source
 import os
 
-app = Flask(__name__)
+#Where hte server is going to serve the file 
+# http://localhost:5000/static/bar_graph.png
+app = Flask(__name__, static_folder='static')
 CORS(app)
 
-app.config['UPLOAD_FOLDER'] = 'static'
+base_dir = os.path.dirname(os.path.abspath(__file__))
+app.config['UPLOAD_FOLDER'] = os.path.join(base_dir, 'static')
+#app.config['UPLOAD_FOLDER'] = 'static'
+#app.config['UPLOAD_FOLDER'] = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+
+print("Static folder path222:", app.config['UPLOAD_FOLDER'])
 
 #Home route that returns below test
 #when root url in accessed
+
+#c:\Users\jtog8\OneDrive\Documents\SubredditNetworkAnalysis\server\static
+#c:\Users\jtog8\OneDrive\Documents\SubredditNetworkAnalysis\server\static
 
 #Route decoration @app.route is a decorator that associates the function below it
 @app.route('/')
@@ -29,8 +39,8 @@ def testing():
 
     result = source.main(input_text, int(sample_size))
 
-    print(result)
-    print(jsonify(result))
+    print('result is ', result)
+    #print(jsonify(result))
     
     return jsonify(result)
 
@@ -39,8 +49,8 @@ def testing():
 
 @app.route('/static/<path:filename>')
 def send_image(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
+    #return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+    return send_from_directory(app.static_folder, filename)
 
 if __name__ == '__main__':
     if not os.path.exists(app.config['UPLOAD_FOLDER']):

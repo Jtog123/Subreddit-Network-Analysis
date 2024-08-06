@@ -14,6 +14,15 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [graphs, setGraphs] = useState(null)
   //const navigate = useNavigate()
+
+  useEffect(() => {
+    console.log("Graphs state updated:", graphs);
+  }, [graphs]);
+
+  
+  const clearGraphs = () => {
+    setGraphs(null);
+  }
   
   // This component handles navigation based on state
   function NavigationHandler() {
@@ -32,53 +41,6 @@ function App() {
     return null; // This component doesn't render anything
   }
 
-/*
-      {!loading && !graphs && <FrontPage
-                      loading={loading}
-                      setLoading={setLoading}
-                      setGraphs={setGraphs}
-                    /> }
-
-      {loading && <LoadingPage/>}
-      {graphs && <GraphPage
-                    graphs={graphs}
-                  />
-        //<div>
-          //<img src = {`http://localhost:5000/${graphs.bar_graph}`} alt="Bar Graph"/>
-          //<img src = {`http://localhost:5000/${graphs.heatmap}`} alt="heatmap"/>
-          //<img src = {`http://localhost:5000/${graphs.network_graph}`} alt="network graph"/>
-        //</div>
-      }
-
-
-            <div className="App ">
-        <Routes>
-          <Route 
-            path='/' 
-            element={!loading && !graphs && 
-            <FrontPage
-              loading={loading}
-              setLoading={setLoading}
-              setGraphs={setGraphs}
-            />}>
-          </Route>
-
-          <Route
-            path='/loading'
-            element={loading && <LoadingPage/>}>
-
-          </Route>
-
-          {graphs && <GraphPage
-              graphs={graphs}
-            />}
-          
-
-        </Routes>
-        
-
-      </div>
-*/
 
 return (
     <Router>
@@ -95,7 +57,7 @@ return (
           />
           <Route
             path='/graphs'
-            element={graphs && <GraphPage graphs={graphs} setGraphs={setGraphs} />}
+            element={graphs && <GraphPage graphs={graphs} setGraphs={setGraphs} clearGraphs={clearGraphs} />}
           />
         </Routes>
       </div>

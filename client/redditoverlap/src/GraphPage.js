@@ -5,39 +5,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight, faHouse } from './icons';
 
 
-function GraphPage( {graphs ,setGraphs} ) {
+function GraphPage( {graphs ,setGraphs, clearGraphs} ) {
 
     const[currentIndex, setCurrentIndex] = useState(0);
     const[isLoaded, setIsLoaded] = useState(false);
     const navigate = useNavigate();
 
-    /*
-        <div>
-            <img src = {`http://localhost:5000/${graphs.bar_graph}`} alt="Bar Graph"/>
-            <img src = {`http://localhost:5000/${graphs.heatmap}`} alt="heatmap"/>
-            <img src = {`http://localhost:5000/${graphs.network_graph}`} alt="network graph"/>
-        </div>
-    */
-        /*
-        Ensure that all graphs a fully loaded before rendering them to prevent background from showing.
-        Create an array of image load promises then use promise.all to wait for all images to load before setting loading to setisLoaded to true
-
-        Use promises
-        */
 
     useEffect(() => {
         if (graphs && graphs.bar_graph && graphs.heatmap && graphs.network_graph) {
+            
 
             const images = [
-                `http://localhost:5000/${graphs.bar_graph}`,
-                `http://localhost:5000/${graphs.heatmap}`,
-                `http://localhost:5000/${graphs.network_graph}`
+                graphs.bar_graph,  // Use relative paths if images are served from the static folder
+                graphs.heatmap,
+                graphs.network_graph
             ];
 
             const imageLoadPromises = images.map((src) => {
                 return new Promise((resolve) => {
                     const img =  new Image()
-                    img.src = src;
+                    img.src = src; 
                     img.onload = resolve
                     img.onerror = resolve
                 })
@@ -50,12 +38,16 @@ function GraphPage( {graphs ,setGraphs} ) {
         }
     }, [graphs])
     
-    const slideContainer = isLoaded ? 
-    [
-        <img className='w-full h-full' src = {`http://localhost:5000/${graphs.bar_graph}`} alt="Bar Graph"/>,
-        <img className='w-full h-full' src = {`http://localhost:5000/${graphs.heatmap}`} alt="heatmap"/>,
-        <img className='w-full h-full' src = {`http://localhost:5000/${graphs.network_graph}`} alt="network graph"/>
-    ] : [];
+    const slideContainer = isLoaded
+    ? [
+        //<img key={graphs.bar_graph} className='w-full h-full' src={`http://localhost:5000/${graphs.bar_graph}`} alt="Bar Graph" />,
+        //<img key={graphs.heatmap} className='w-full h-full' src={`http://localhost:5000/${graphs.heatmap}`} alt="Heatmap" />,
+        //<img key={graphs.network_graph} className='w-full h-full' src={`http://localhost:5000/${graphs.network_graph}`} alt="Network Graph" />
+        <img key={graphs.bar_graph} className='w-full h-full' src={graphs.bar_graph} alt="Bar Graph" />,
+        <img key={graphs.heatmap} className='w-full h-full' src={graphs.heatmap} alt="Heatmap" />,
+        <img key={graphs.network_graph} className='w-full h-full' src={graphs.network_graph} alt="Network Graph" />
+    ]
+    : [];
     
  
     /*
@@ -69,7 +61,8 @@ function GraphPage( {graphs ,setGraphs} ) {
         */
     
     function handleHomeClick() {
-        setGraphs(null); // Clear graphs state before navigating home
+        //setGraphs(null); // Clear graphs state before navigating home
+        clearGraphs();
         navigate("/");
     }
 

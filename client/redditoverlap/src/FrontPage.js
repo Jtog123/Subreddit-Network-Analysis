@@ -47,6 +47,10 @@ function FrontPage( {loading, setLoading, setGraphs} ) {
     }, [loading , inputText])
     */
 
+    useEffect(() => {
+        setGraphs(null)
+    }, [setGraphs])
+
     async function sendInput() {
         try {
             let result = await axios.post('http://localhost:5000//text-and-sample-input', {inputText, sampleSize})
