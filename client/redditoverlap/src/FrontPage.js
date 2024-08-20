@@ -83,7 +83,7 @@ function FrontPage( {loading, setLoading, setGraphs} ) {
 
             <div className="content-container bg-black min-h-screen w-3/4">
                 <div className="header-container  h-1/6 flex justify-center items-center">
-                <header className='text-6xl bg-black w-full text-center text-white  '>Reddit Overlap Analysis</header>
+                <header className='text-6xl bg-black w-full text-center text-white  '>Reddit Network Analysis</header>
             </div>
 
             <div className="input-container h-1/8 w-full flex justify-center items-center ">
